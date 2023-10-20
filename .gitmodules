@@ -1,3 +1,6 @@
 [submodule "sliding-puzzles"]
 	path = sliding-puzzles
 	url = https://github.com/WandererXII/sliding-puzzles
+[submodule "ChessPursuit"]
+	path = ChessPursuit
+	url = https://github.com/ornicar/ChessPursuit
