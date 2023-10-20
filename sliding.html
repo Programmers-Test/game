@@ -4,6 +4,8 @@
         <title> Chơi game </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+ 	<link rel="stylesheet" href="assets/css/hakoirimusume.css" />
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <link rel="icon" href="https://raw.githubusercontent.com/Thi-Vua-Lay-Tot/Thi-Vua-Lay-Tot.github.io/master/images/favicon.ico" type="image/x-icon" />
@@ -18,6 +20,14 @@
             body,h1,h2,h3,h4,h5 {
                 font-family: "Raleway", sans-serif
             }
+	    #game {
+    	    width: 500px;
+            margin: auto;
+            }
+ 	    @media only screen and (max-width: 660px) {
+    	    #game {
+      	    width: 90%;
+	    }
             .github-logo {
                 width: 1.5em;
                 height: auto;
@@ -35,11 +45,50 @@
             }
         </style>
 		
-		<main role="main">
-            <h1 align="center">Hãy cho quân Vua 玉 ra khỏi vòng vây</h1>
-            <div class="game-wrap"><p class="objective">Mục tiêu của bạn là giúp quân vua trốn thoát qua lỗ dưới cùng trên bàn cờ.</p><div id="game"><sp-main><sp-board><sp-piece class="G1" style="transform: translate(0%, 0%); width: 25%; height: 40%;"></sp-piece><sp-piece class="K" style="transform: translate(50%, 0%); width: 50%; height: 40%;"></sp-piece><sp-piece class="G2" style="transform: translate(300%, 0%); width: 25%; height: 40%;"></sp-piece><sp-piece class="B" style="transform: translate(0%, 100%); width: 25%; height: 40%;"></sp-piece><sp-piece class="S" style="transform: translate(50%, 200%); width: 50%; height: 20%;"></sp-piece><sp-piece class="R" style="transform: translate(300%, 100%); width: 25%; height: 40%;"></sp-piece><sp-piece class="N" style="transform: translate(100%, 300%); width: 25%; height: 20%;"></sp-piece><sp-piece class="L" style="transform: translate(200%, 300%); width: 25%; height: 20%;"></sp-piece><sp-piece class="P1" style="transform: translate(0%, 400%); width: 25%; height: 20%;"></sp-piece><sp-piece class="P2" style="transform: translate(300%, 400%); width: 25%; height: 20%;"></sp-piece></sp-board></sp-main></div><div class="game-help"><div><span id="move-cnt">0 </span>moves</div><button id="reset">RESET</button></div><p class="credits"><a href="https://github.com/WandererXII/sliding-puzzles" target="_blank">Sliding puzzles</a></p></div>
-			<p>
-        </main>
+<body>
+  <h2>箱入り娘</h2>
+
+  <div id="game-help">
+    <div>
+      <span id="move-count"></span>
+      moves
+    </div>
+    <button id="reset">RESET</button>
+    <div id="game"></div>
+  </div>
+
+  <script src="dist/sliding-puzzles.js"></script>
+  <script>
+    function sol(s) {
+      return s.pieces.find((p) => p.name === 'K').position === 13;
+    }
+    function win(s) {
+      setTimeout(() => {
+        wscreen = document.createElement('div');
+        wscreen.classList.add('win');
+        s.elements.main.appendChild(wscreen);
+      }, 50);
+    }
+    function move(s) {
+      mcnt = document.getElementById('move-count');
+      mcnt.innerHTML = s.moves;
+    }
+
+    function init() {
+      mcnt = document.getElementById('move-count');
+      mcnt.innerHTML = '0';
+      SlidingPuzzles(document.getElementById('game'), 'G1 K K G2/G1 K K G2/B S S R/B N L R/ P1 . . P2', {
+        solution: sol,
+        onVictory: win,
+        onMove: move,
+      });
+    }
+
+    btn = document.getElementById('reset');
+    btn.onclick = init;
+    init();
+  </script>
+
             <footer  align="center">
             <p>
                 <a href="https://github.com/orgs/Thi-Vua-Lay-Tot/people">
