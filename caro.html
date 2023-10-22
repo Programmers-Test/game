@@ -1,0 +1,315 @@
+        <title> Chơi game </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+ 	<link rel="stylesheet" href="sliding-puzzles/assets/css/hakoirimusume.css" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel="icon" href="https://raw.githubusercontent.com/Thi-Vua-Lay-Tot/Thi-Vua-Lay-Tot.github.io/master/images/favicon.ico" type="image/x-icon" />
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="https://thi-vua-lay-tot.github.io/game/sliding.html">< Quay lại</a>
+            </nav>
+        </header>
+		<style>
+    div.patron {
+    margin-left: 10%;
+    width: 80%;
+    padding: 0px;
+}
+@media (max-width: 700px) {
+    div.patron{
+        margin-left: 2%;
+        width: 96%;
+    }
+}
+    body {background: lightgray;}
+    .tic-tac-toe-board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      margin-bottom: 20px;
+        background: var(--bg-color2);
+    }
+
+    .cell {
+      width: 100px;
+      height: 100px;
+      border: 1px solid #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .cell:hover {box-shadow: inset 0 0 10px -5px black;}
+
+    .player-cell {
+      background-color: lightgreen;
+    }
+
+    .opponent-cell {
+      background-color: lightcoral;
+    }
+
+    .highlight {
+      background-color: lightblue;
+    }
+
+    .result {
+      background: whitesmoke;
+      padding: 2em;
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+      font-size: 1.2em;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .Main-Flex-Container {display: flex; width: 100%;}
+  @media (max-width: 799px) and (orientation: portrait) { .Main-Flex-Container {flex-flow: columns;} }
+
+button.again-btn {
+margin: 2em;
+  align-items: center;
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 19px 24px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
+  Main-Flex-Container > div {
+    flex-basis: 50%;
+  }
+  footer {
+                background-color: #00FFKF;
+                padding: 5px;
+                margin-left: auto;
+                margin-top: auto;
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                width: 70%;
+            }
+  </style>
+
+
+  <h1>Tic-Tac-Toe</h1>
+  <div class="Main-Flex-Container">
+  <div><div class="tic-tac-toe-board" id="board">
+    <div class="cell" onclick="makeMove(0, 0)" id="cell-0"></div>
+    <div class="cell" onclick="makeMove(0, 1)" id="cell-1"></div>
+    <div class="cell" onclick="makeMove(0, 2)" id="cell-2"></div>
+    <div class="cell" onclick="makeMove(1, 0)" id="cell-3"></div>
+    <div class="cell" onclick="makeMove(1, 1)" id="cell-4"></div>
+    <div class="cell" onclick="makeMove(1, 2)" id="cell-5"></div>
+    <div class="cell" onclick="makeMove(2, 0)" id="cell-6"></div>
+    <div class="cell" onclick="makeMove(2, 1)" id="cell-7"></div>
+    <div class="cell" onclick="makeMove(2, 2)" id="cell-8"></div>
+  </div></div>
+  <div style="padding: 2em;"><div class="result" id="result"></div>
+  <button class="again-btn" onclick="resetGame()">Chơi lại</button></div>
+  </div>
+  <script>function getBestMove(board, player) {
+  let bestScore = -Infinity;
+  let bestMove;
+  for (let i = 0; i < 9; i++) {
+    if (board[i].innerText === '') {
+      board[i].innerText = 'X';
+      let score = minimax(board, 0, false, -Infinity, Infinity, player === 'O' ? 'X' : 'O');
+      board[i].innerText = '';
+      if (score > bestScore) {
+        bestScore = score;
+        bestMove = i;
+      }
+    }
+  }
+  return [Math.floor(bestMove / 3), bestMove % 3];
+}
+function minimax(board, depth, isMaximizing, alpha, beta, player) {
+  if (checkGameOver(board)) {
+    return evaluateBoard(board, depth);
+  }
+  if (isMaximizing) {
+    let maxScore = -Infinity;
+    for (let i = 0; i < 9; i++) {
+      if (board[i].innerText === '') {
+        board[i].innerText = player;
+        maxScore = Math.max(maxScore, minimax(board, depth + 1, false, alpha, beta, player === 'O' ? 'X' : 'O'));
+        board[i].innerText = '';
+        alpha = Math.max(alpha, maxScore);
+        if (beta <= alpha) {
+          break;
+        }
+      }
+    }
+    return maxScore;
+  } else {
+    let minScore = Infinity;
+    for (let i = 0; i < 9; i++) {
+      if (board[i].innerText === '') {
+        board[i].innerText = player;
+        minScore = Math.min(minScore, minimax(board, depth + 1, true, alpha, beta, player === 'O' ? 'X' : 'O'));
+        board[i].innerText = '';
+        beta = Math.min(beta, minScore);
+        if (beta <= alpha) {
+          break;
+        }
+      }
+    }
+    return minScore;
+  }
+}
+function evaluateBoard(board, depth) {
+  for (const combo of winningCombinations) {
+    const [a, b, c] = combo;
+    if (board[a].innerText && board[a].innerText === board[b].innerText && board[a].innerText === board[c].innerText) {
+      return board[a].innerText === 'X' ? 10 - depth : depth - 10;
+    }
+  }
+  return 0;
+}
+</script>
+<script>
+  const cells = document.getElementsByClassName('cell');
+  const resultDiv = document.getElementById('result');
+  let currentPlayer = 'O';
+  let gameOver = false;
+  const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  function makeMove(row, col) {
+    if (cells[row * 3 + col].innerText === '' && !gameOver) {
+      cells[row * 3 + col].innerText = currentPlayer;
+      cells[row * 3 + col].classList.add(currentPlayer === 'O' ? 'player-cell' : 'opponent-cell');
+      if (checkGameOver()) {
+        gameOver = true;
+        highlightWinningCells();
+        displayResult();
+      } else {
+        currentPlayer = 'X';
+        setTimeout(computerMove, 500); // Delay the computer move by 500 milliseconds
+      }
+    }
+  }
+  function computerMove() {
+    if (gameOver) return;
+    const bestMove = getBestMove(cells, currentPlayer);
+    const [row, col] = bestMove;
+    cells[row * 3 + col].innerText = 'X';
+    cells[row * 3 + col].classList.add('opponent-cell');
+    currentPlayer = 'O';
+    if (checkGameOver()) {
+      gameOver = true;
+      highlightWinningCells();
+      displayResult();
+    }
+  }
+  function checkGameOver() {
+    for (const combo of winningCombinations) {
+      const [a, b, c] = combo;
+      if (
+        cells[a].innerText &&
+        cells[a].innerText === cells[b].innerText &&
+        cells[a].innerText === cells[c].innerText
+      ) {
+        return true;
+      }
+    }
+    let isDraw = true;
+    for (let i = 0; i < cells.length; i++) {
+      if (cells[i].innerText === '') {
+        isDraw = false;
+        break;
+      }
+    }
+    return isDraw;
+  }
+  function highlightWinningCells() {
+    for (const combo of winningCombinations) {
+      const [a, b, c] = combo;
+      if (
+        cells[a].innerText &&
+        cells[a].innerText === cells[b].innerText &&
+        cells[a].innerText === cells[c].innerText
+      ) {
+        cells[a].classList.add('highlight');
+        cells[b].classList.add('highlight');
+        cells[c].classList.add('highlight');
+      }
+    }
+  }
+  function displayResult() {
+    let winner = '';
+    for (const combo of winningCombinations) {
+      const [a, b, c] = combo;
+      if (
+        cells[a].innerText &&
+        cells[a].innerText === cells[b].innerText &&
+        cells[a].innerText === cells[c].innerText
+      ) {
+        winner = cells[a].innerText;
+        break;
+      }
+    }
+    if (winner === 'O') {
+      resultDiv.innerText = 'Bạn thắng!';
+    } else if (winner === 'X') {
+      resultDiv.innerText = 'Máy thắng!';
+    } else {
+      resultDiv.innerText = "Hòa!";
+    }
+  }
+  function resetBoard() {
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].innerText = '';
+      cells[i].classList.remove('player-cell', 'opponent-cell', 'highlight');
+    }
+  }
+  function resetGame() {
+    resetBoard();
+    resultDiv.innerText = '';
+    currentPlayer = 'O';
+    gameOver = false;
+  }
+</script>
+
+  <footer align="center">
+    <p>
+        <a href="https://github.com/Thi-Vua-Lay-Tot/game">
+           <img src="https://github.com/fluidicon.png">
+        </a>
+        <a href="https://www.youtube.com/@TungJohnPlayingChess"><img src="https://img.shields.io/badge/-Youtube-%23EA4335?style=for-the-badge&logo=youtube&logoColor=white" target="_blank"></a>
+	<a href="https://www.facebook.com/TungJohn2005" target="_blank"><img src="https://img.shields.io/badge/-Facebook-%231DA1F2?style=for-the-badge&logo=facebook&logoColor=white" target="_blank"></a>
+        <a href="https://clubs.chess.com/GkQy"> <img src="https://img.shields.io/badge/-Chess.com-11111?logo=chess.com&logoColor=11111" target="_blank"> </a>
+	<a href="https://lichess.org/team/thi-vua-lay-tot-tungjohn-playing-chess"><img src="https://img.shields.io/badge/-Lichess-050505?style=flat-square&logo=Lichess&logoColor=white" target="_blank"></a>
+	<a href="https://lishogi.org/team/thi-vua-lay-tot-tungjohn-playing-shogi"><img src="https://img.shields.io/badge/-Lishogi-050505?style=flat-square&logo=Lishogi&logoColor=white" target="_blank"></a>
+	<a href="https://lidraughts.org/team/thi-vua-lay-quan-tungjohn-playing-draughts"><img src="https://img.shields.io/badge/-Lidraughts-050505?style=flat-square&logo=Lidraughts&logoColor=white" target="_blank"></a>
+	<a href="https://playstrategy.org/team/thi-vua-lay-tot-tungjohn-playing-chess"><img src="https://img.shields.io/badge/-PlayStrategy-050505?style=flat-square&logo=PlayStrategy&logoColor=white" target="_blank"></a>
+    </p>
+  </footer>
+    </body>
+</html>
