@@ -6,12 +6,66 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-  	<link rel="stylesheet" href="https://typelevel.org/typelevel.github.com/css/main.css">
+  	<link rel="stylesheet" href="https://github.com/jupyter/jupyter.github.io/blob/master/_sass/components/_navbar.scss">
         <link rel="icon" href="https://raw.githubusercontent.com/Thi-Vua-Lay-Tot/Thi-Vua-Lay-Tot.github.io/master/images/favicon.ico" type="image/x-icon" />
     </head>
     <body>
         <header>
-	<nav id="navigation" class="navigation-scroll">
+<nav class="navbar">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+               <picture>
+                <source media="(max-width: 767px)" srcset="/assets/logos/logomark-orangebody-greyplanets.svg">
+                <source media="(min-width: 768px)" srcset="/assets/logos/rectanglelogo-greytext-orangebody-greymoons.svg">
+                <img class="navbar-logo" src="/assets/logos/rectanglelogo-greytext-orangebody-greymoons.svg" alt="Jupyter Home" height="40" loading="eager">
+               </picture>
+            </a>
+        </div>
+        <button type="button" class="hamburger" data-bs-toggle="collapse" data-bs-target="#bs-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar white-icon-bar"></span>
+            <span class="icon-bar white-icon-bar"></span>
+            <span class="icon-bar white-icon-bar"></span>
+        </button>
+        <div class="mobile-clearfix"></div>
+        <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+            <ul class="navbar-links"><li>
+                <a href="/try" class="">
+                   Try
+               </a>
+            </li><li>
+                <a href="/install" class="">
+                   Install
+               </a>
+            </li><li>
+                <a href="/community" class="">
+                   Get Involved
+               </a>
+            </li><li>
+                <a href="https://docs.jupyter.org/" target="_blank" rel="noopener noreferrer" class="">
+                   Documentation
+               </a>
+            </li><li>
+                <a href="https://blog.jupyter.org" target="_blank" rel="noopener noreferrer" class="">
+                   News
+               </a>
+            </li><li>
+                <a href="/governance/" class="">
+                   Governance
+               </a>
+            </li><li>
+                <a href="/security" class="">
+                   Security
+               </a>
+            </li><li>
+                <a href="/about" class="">
+                   About
+               </a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+<!-- <nav id="navigation" class="navigation-scroll">
   <div class="container">
     <div class="navbar" id="navbar-main">
       <div class="navbar-brand">
@@ -37,7 +91,7 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav> -->
             <!--<nav>
                 <a href="https://thi-vua-lay-tot.github.io/">< Quay lại trang chủ</a>
             </nav> -->
@@ -66,7 +120,7 @@
 	<main role="main">
         <h1 align="center">Dưới đây là một số trò chơi nhỏ cho bạn:</h1>
 	<ul>
-	<li><a href="./chesspursuit.html">ChessPursuit</a></li>
+	<li ><a href="./chesspursuit.html">ChessPursuit</a></li>
 	<li><a href="./caro.html">Tic-tac-toe (Cờ carô)</a></li>
 	<li><a href="./sliding.html">Shogi Sliding-Puzzles</a></li>
 	</ul>
