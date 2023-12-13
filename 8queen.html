@@ -5,6 +5,7 @@
  	<link rel="stylesheet" href="sliding-puzzles/assets/css/hakoirimusume.css" />
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="shepherd.js/dist/css/shepherd.css"/>
         <link rel="icon" href="https://raw.githubusercontent.com/Thi-Vua-Lay-Tot/Thi-Vua-Lay-Tot.github.io/master/images/favicon.ico" type="image/x-icon" />
     </head>
     <body>
@@ -88,10 +89,48 @@
         </style>
 
   <body>
-  <!-- <h2 align="center">Sliding-puzzles</h2>
-  <p align="center">Hãy đưa quân vua 玉 thoát ra ở lỗ phía dưới bàn cờ</p> -->
-<link rel="stylesheet" href="shepherd.js/dist/css/shepherd.css"/>
+<div class="game">
 <script src="shepherd.js/dist/js/shepherd.min.js"></script>
+<script>
+const tour = new Shepherd.Tour({
+  defaultStepOptions: {
+    cancelIcon: {
+      enabled: true
+    },
+    classes: 'class-1 class-2',
+    scrollTo: { behavior: 'smooth', block: 'center' }
+  }
+});
+
+tour.addStep({
+  title: 'Creating a Shepherd Tour',
+  text: `Creating a Shepherd tour is easy. too!\
+  Just create a \`Tour\` instance, and add as many steps as you want.`,
+  attachTo: {
+    element: '.hero-example',
+    on: 'bottom'
+  },
+  buttons: [
+    {
+      action() {
+        return this.back();
+      },
+      classes: 'shepherd-button-secondary',
+      text: 'Back'
+    },
+    {
+      action() {
+        return this.next();
+      },
+      text: 'Next'
+    }
+  ],
+  id: 'creating'
+});
+
+tour.start();
+</script>
+</div>
   </body>
 
   <footer align="center">
