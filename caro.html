@@ -18,13 +18,13 @@
     margin-left: 10%;
     width: 80%;
     padding: 0px;
-}
-@media (max-width: 700px) {
+    }
+    @media (max-width: 700px) {
     div.patron{
         margin-left: 2%;
         width: 96%;
     }
-}
+    }
     body {background: lightgray;}
     .tic-tac-toe-board {
       display: grid;
@@ -37,7 +37,7 @@
     .cell {
       width: 100px;
       height: 100px;
-      border: 1px solid #000;
+      border: 1px solid #00000000;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -70,8 +70,8 @@
     .Main-Flex-Container {display: flex; width: 100%;}
   @media (max-width: 799px) and (orientation: portrait) { .Main-Flex-Container {flex-flow: columns;} }
 
-button.again-btn {
-margin: 2em;
+  button.again-btn {
+  margin: 2em;
   align-items: center;
   background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
   border: 0;
@@ -93,20 +93,19 @@ margin: 2em;
   touch-action: manipulation;
   white-space: nowrap;
   cursor: pointer;
-}
+  }
   Main-Flex-Container > div {
     flex-basis: 50%;
   }
   footer {
-                background-color: #00FFKF;
-                padding: 5px;
-                margin-left: auto;
-                margin-top: auto;
-                position: fixed;
-                bottom: 0;
-                right: 0;
-                width: 70%;
-            }
+    padding: 5px;
+    margin-left: auto;
+    margin-top: auto;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 70%;
+  }
   </style>
 
 
@@ -295,21 +294,21 @@ function evaluateBoard(board, depth) {
     currentPlayer = 'O';
     gameOver = false;
   }
-</script>
+  </script>
 
   <footer align="center">
     <p>
-        <a href="https://github.com/Thi-Vua-Lay-Tot/game">
-           <img src="https://github.com/fluidicon.png">
-        </a>
-        <a href="https://www.youtube.com/@TungJohnPlayingChess"><img src="https://img.shields.io/badge/-Youtube-%23EA4335?style=for-the-badge&logo=youtube&logoColor=white" target="_blank"></a>
-	<a href="https://www.facebook.com/TungJohn2005" target="_blank"><img src="https://img.shields.io/badge/-Facebook-%231DA1F2?style=for-the-badge&logo=facebook&logoColor=white" target="_blank"></a>
-        <a href="https://clubs.chess.com/GkQy"> <img src="https://img.shields.io/badge/-Chess.com-11111?logo=chess.com&logoColor=11111" target="_blank"> </a>
-	<a href="https://lichess.org/team/thi-vua-lay-tot-tungjohn-playing-chess"><img src="https://img.shields.io/badge/-Lichess-050505?style=flat-square&logo=Lichess&logoColor=white" target="_blank"></a>
-	<a href="https://lishogi.org/team/thi-vua-lay-tot-tungjohn-playing-shogi"><img src="https://img.shields.io/badge/-Lishogi-050505?style=flat-square&logo=Lishogi&logoColor=white" target="_blank"></a>
-	<a href="https://lidraughts.org/team/thi-vua-lay-quan-tungjohn-playing-draughts"><img src="https://img.shields.io/badge/-Lidraughts-050505?style=flat-square&logo=Lidraughts&logoColor=white" target="_blank"></a>
-	<a href="https://playstrategy.org/team/thi-vua-lay-tot-tungjohn-playing-chess"><img src="https://img.shields.io/badge/-PlayStrategy-050505?style=flat-square&logo=PlayStrategy&logoColor=white" target="_blank"></a>
+      <a href="https://github.com/Thi-Vua-Lay-Tot/game">
+        <img src="https://github.com/fluidicon.png">
+      </a>
+      <a href="https://www.youtube.com/@TungJohnPlayingChess"><img src="https://img.shields.io/badge/-Youtube-%23EA4335?style=for-the-badge&logo=youtube&logoColor=white" target="_blank"></a>
+	    <a href="https://www.facebook.com/TungJohn2005" target="_blank"><img src="https://img.shields.io/badge/-Facebook-%231DA1F2?style=for-the-badge&logo=facebook&logoColor=white" target="_blank"></a>
+      <a href="https://clubs.chess.com/GkQy"> <img src="https://img.shields.io/badge/-Chess.com-11111?logo=chess.com&logoColor=11111" target="_blank"> </a>
+	    <a href="https://lichess.org/team/thi-vua-lay-tot-tungjohn-playing-chess"><img src="https://img.shields.io/badge/-Lichess-050505?style=flat-square&logo=Lichess&logoColor=white" target="_blank"></a>
+	    <a href="https://lishogi.org/team/thi-vua-lay-tot-tungjohn-playing-shogi"><img src="https://img.shields.io/badge/-Lishogi-050505?style=flat-square&logo=Lishogi&logoColor=white" target="_blank"></a>
+	    <a href="https://lidraughts.org/team/thi-vua-lay-quan-tungjohn-playing-draughts"><img src="https://img.shields.io/badge/-Lidraughts-050505?style=flat-square&logo=Lidraughts&logoColor=white" target="_blank"></a>
+	    <a href="https://playstrategy.org/team/thi-vua-lay-tot-tungjohn-playing-chess"><img src="https://img.shields.io/badge/-PlayStrategy-050505?style=flat-square&logo=PlayStrategy&logoColor=white" target="_blank"></a>
     </p>
   </footer>
-    </body>
+  </body>
 </html>
